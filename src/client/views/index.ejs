@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Willi.io</title>
+
+		<link rel="stylesheet" href="style.css" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+		
+		<script defer type="module" src="http://localhost:3000/socket.io/socket.io.js"></script>
+		<script defer type="module" src="index.js"></script>
+
+		<input type="hidden" name="serverUrl" value="<%= room %>">
+	</head>
+	<body>
+
+		<div class="loader" id="loading-screen">
+			<div class="box">
+				<h4 for="name">Enter your display name</h4>
+				<p class="warning" id="error-label"></p>
+				<input type="text" name="name" id="name-input">
+				<button id="submit-name">SAVE</button>
+			</div>
+		</div>
+
+		<header>
+			<h1 id="display-name"></h1>
+			<h1 id="user-count"></h1>
+		</header>
+
+        <div class="conversation-container" id="conversation-container">
+            <div class="conversation" id="conversation">
+               
+            </div>
+			<div id="conversation-end"></div>
+        </div>
+
+		<footer>
+			<div class="input-container">
+				<textarea name="message" id="chatInput" cols="600" rows="1"></textarea>
+				<button id="sendBtn"><i class="material-icons">send</i></button>
+			</div>
+		</footer>
+	</body>
+</html>

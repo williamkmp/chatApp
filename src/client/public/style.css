@@ -1,0 +1,280 @@
+:root {
+	--color-1: #3c06d6;
+	--color-2: #3c78f0;
+	--color-3: #e7e6e6;
+	--color-4: #ffffff;
+	--color-5: #64686e;
+	--color-6: #b9b9b9;
+
+	--background-color: var(--color-3);
+	--header-color: var(--color-1);
+	--footer-color: var(--color-4);
+
+	--bar-height: 95px;
+	--shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+	--text-size: 15px;
+
+	--chatBox-padding: 20px;
+
+	--message-radius: 25px;
+	--message-padding: 15px;
+	--message-margin: 20px;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	padding: 0px;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
+header,
+footer {
+	width: 100%;
+	height: var(--bar-height);
+	padding: 20px 40px;
+	box-shadow: var(--shadow);
+}
+
+header {
+	background-color: var(--header-color);
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+header h1{
+	color: var(--color-4);
+}
+
+#user-count {
+	align-self: flex-end;
+}
+
+#user-count::before {
+	content: "(";
+}
+
+#user-count::after {
+	content: ')';
+}
+
+.loader .box {
+	width: 30vw;
+	height: 30vh;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	background-color: var(--color-4);
+	padding: 40px;
+	border-radius: var(--chatBox-padding);
+}
+
+.loader {
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: fixed;
+	top: 0px;
+	left: 0px;
+
+	background-color: #00000069;
+	backdrop-filter: blur(10px);
+}
+
+.remove {
+	animation-name: remove-loading;
+	animation-duration: 250ms;
+	animation-fill-mode: forwards;
+	animation-direction: normal;
+	animation-timing-function: ease-in-out;
+}
+
+.loader > .box > * {
+	width: 80%;
+}
+
+.loader > .box > *:first-child {
+	margin-top: auto;
+}
+
+.loader > .box > *:not(:last-child) {
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.loader > .box > input {
+	width: 100%;
+
+	margin: 0;
+	padding: 10px 40px;
+	font-size: var(--text-size);
+
+	border-radius: 100px;
+	outline: none;
+
+	border: 2px solid gray;
+}
+
+.warning {
+	color: red;
+}
+
+#submit-name {
+	min-width: fit-content;
+	width: 50%;
+
+	margin-top: auto;
+
+	color: #ffffff;
+	padding: 15px;
+	border: none;
+	border-radius: 20px;
+	background-color: var(--color-1);
+}
+
+footer {
+	background-color: var(--footer-color);
+}
+
+.conversation-container {
+	width: 100%;
+	height: calc(100% - var(--bar-height) * 2);
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.conversation {
+	width: 100%;
+	min-height: 100%;
+	background-color: var(--background-color);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+
+	padding: var(--chatBox-padding);
+}
+
+span.message {
+	max-width: 40%;
+	align-self: flex-start;
+
+	padding: var(--message-padding);
+	font-size: 15px;
+	color: var(--color-4);
+
+	border-bottom-left-radius: 0px;
+	border-radius: var(--message-radius);
+	background-color: var(--color-2);
+	box-shadow: var(--shadow);
+	white-space: pre;
+}
+
+span.notif {
+	width: 50%;
+	align-self: center;
+	padding: 2px 20px;
+
+	text-align: center;
+	font-size: var(--text-size);
+	color: var(--color-5);
+
+	border-radius: var(--message-radius);
+	background-color: var(--color-6);
+	box-shadow: var(--shadow);
+}
+
+.conversation span:not(:last-child) {
+	margin-bottom: var(--message-margin);
+}
+
+span.message.self {
+	align-self: flex-end;
+	color: #000000;
+	background-color: var(--color-4);
+	border-bottom-left-radius: var(--message-radius);
+	border-bottom-right-radius: 0px;
+}
+
+.input-container {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.input-container textarea {
+	width: 95%;
+	height: 100%;
+	resize: none;
+
+	padding: 10px 40px;
+	font-size: var(--text-size);
+	text-align: justify;
+	text-justify: inter-word;
+
+	border-radius: 100px;
+	outline: none;
+}
+
+.input-container button {
+	height: 100%;
+	width: calc(5% - 20px);
+	border: none;
+	background: none;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+button i {
+	padding: 15px;
+	border-radius: 50%;
+	background-color: var(--color-1);
+	color: var(--color-4);
+	box-shadow: var(--shadow);
+}
+
+@keyframes remove-loading {
+	0% {
+		background-color: #00000069;
+		backdrop-filter: blur(10px);
+	}
+	99% {
+		background-color: #00000000;
+		backdrop-filter: blur(0px);
+		width: 100vw;
+		height: 100vh;
+	}
+	100% {
+		width: 0vw;
+		height: 0vh;
+		background-color: #00000000;
+		backdrop-filter: blur(0px);
+	}
+}
